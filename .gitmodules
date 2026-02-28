@@ -1,6 +1,0 @@
-[submodule "nvim/.config/nvim"]
-	path = nvim/.config/nvim
-	url = git@github.com:CrisRPia/nvim_config.git
-[submodule "claude/.claude"]
-	path = claude/.claude
-	url = git@github.com:CrisRPia/claude-config.git

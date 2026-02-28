@@ -1,0 +1,3 @@
+local mkv = require("markview")
+
+vim.keymap.set("n", "<leader>pr", mkv.commands["Toggle"])

@@ -1,0 +1,10 @@
+{
+  "model": "opus",
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "basedpyright-lsp@claude-lsp-servers": true,
+    "document-skills@anthropic-agent-skills": true
+  },
+  "effortLevel": "medium"
+}
