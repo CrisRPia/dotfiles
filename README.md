@@ -19,6 +19,7 @@ stow -t ~ zsh git aerospace barik nushell linearmouse
 ln -s ~/dotfiles/nvim/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/claude/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 ln -s ~/dotfiles/claude/.claude/settings.json ~/.claude/settings.json
+ln -s ~/dotfiles/claude/.claude/skills ~/.claude/skills
 ```
 
 If files already exist, use `stow --adopt` to replace them (moves originals into the repo).
