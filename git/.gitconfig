@@ -1,0 +1,40 @@
+[user]
+    email = cristian.rodriguez@delto.com
+
+[core]
+    editor = nvim
+    pager = delta
+    autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+    true-color = always
+    navigate = true
+    hyperlinks = true
+    map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[pull]
+    rebase = true
+
+[diff]
+    algorithm = patience
+    colorMoved = default
+
+[merge]
+    tool = vimdiff
+    conflictStyle = zdiff3
+
+[alias]
+    lg = log --graph --pretty=format:'%C(auto)%h%d %s %C(green)(%cr) %C(bold blue)<%an>%Creset'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
