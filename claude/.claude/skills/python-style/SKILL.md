@@ -151,40 +151,31 @@ each step takes input, produces output, the next step picks it up. Push toward
 pure functions — take input, return output, no side effects. Isolate IO and
 state mutation at the edges.
 
-## Defensive programming
+## Function signatures
 
-Assert assumptions instead of papering over them with defaults:
+Avoid `*args` and `**kwargs` outside of decorators. They erase type information
+and make it hard to extend an interface later — adding a parameter means auditing
+every call site to make sure it's not silently swallowed. Spell out the
+parameters explicitly. The only good use is in decorator wrappers where you're
+forwarding an unknown signature via `ParamSpec`.
 
-```python
-assert user is not None
-assert isinstance(event, ClickEvent)
-```
+## Decorators
 
-Assertions are documentation that crashes when wrong. They make invariants
-explicit and catch violations early instead of letting bad state propagate.
-Use them for internal invariants — things that should be true if the code is
-correct. For external input, use proper validation. Don't fear errors — a loud
-crash beats silently doing the wrong thing.
+Always use `@functools.wraps(f)` on the inner wrapper. It preserves
+`__name__`, `__doc__`, `__annotations__`, `__type_params__`, and sets
+`__wrapped__`. Type decorators with `ParamSpec` so the signature is preserved
+for type checkers too, not just at runtime.
 
-## Error handling
+## Comments and documentation
 
-Don't add try/except just because something *could* throw. Letting exceptions
-propagate is often correct — there's usually a global handler, or the caller is
-better positioned to decide. Unnecessary error handling is noise.
+Don't over-document. Good code describes itself. Comments are only for
+justifying something that looks wrong but is intentional — workarounds, API
+quirks, non-obvious external constraints.
 
-When you do handle errors:
-- Use try/except for external state (filesystem, network, untrusted input)
-  where failure is expected and needs local handling.
-- Keep try blocks minimal — only the operation that can raise.
-- Catch specific exceptions. Bare `except:` and `except Exception:` are only
-  acceptable at top-level entry points.
-- No silent `pass` handlers. Log with context, re-raise with
-  `raise X from e`, or return a documented default.
-
-For local values, prefer `match`/`case` with structural patterns, or
-conditional checks (`if`, `in`, `hasattr()`). Catching `KeyError`,
-`AttributeError`, or `TypeError` as control flow is a code smell — it usually
-means you should be using pattern matching, `dict.get()`, or `isinstance()`.
+Docstrings define a function's contract so callers don't need to read the
+implementation: what it does, what it expects, what it returns. No filler. If a
+signature with expressive types already communicates the contract, skip the
+docstring entirely — a redundant docstring is worse than none because it rots.
 
 ## Pattern matching
 
@@ -223,16 +214,47 @@ For open-ended matches where unexpected values are possible at runtime, use
 `case _:` with a raise. Dataclasses support class patterns automatically via
 `__match_args__`.
 
-## Comments and documentation
+## Defensive programming
 
-Don't over-document. Good code describes itself. Comments are only for
-justifying something that looks wrong but is intentional — workarounds, API
-quirks, non-obvious external constraints.
+Assert assumptions instead of papering over them with defaults:
 
-Docstrings define a function's contract so callers don't need to read the
-implementation: what it does, what it expects, what it returns. No filler. If a
-signature with expressive types already communicates the contract, skip the
-docstring entirely — a redundant docstring is worse than none because it rots.
+```python
+assert user is not None
+assert isinstance(event, ClickEvent)
+```
+
+Assertions are documentation that crashes when wrong. They make invariants
+explicit and catch violations early instead of letting bad state propagate.
+Use them for internal invariants — things that should be true if the code is
+correct. For external input, use proper validation. Don't fear errors — a loud
+crash beats silently doing the wrong thing.
+
+## Error handling
+
+Don't add try/except just because something *could* throw. Letting exceptions
+propagate is often correct — there's usually a global handler, or the caller is
+better positioned to decide. Unnecessary error handling is noise.
+
+When you do handle errors:
+- Use try/except for external state (filesystem, network, untrusted input)
+  where failure is expected and needs local handling.
+- Keep try blocks minimal — only the operation that can raise.
+- Catch specific exceptions. Bare `except:` and `except Exception:` are only
+  acceptable at top-level entry points.
+- No silent `pass` handlers. Log with context, re-raise with
+  `raise X from e`, or return a documented default.
+
+For local values, prefer `match`/`case` with structural patterns, or
+conditional checks (`if`, `in`, `hasattr()`). Catching `KeyError`,
+`AttributeError`, or `TypeError` as control flow is a code smell — it usually
+means you should be using pattern matching, `dict.get()`, or `isinstance()`.
+
+## Comprehensions
+
+Prefer comprehensions when short and clear. Don't force functional style — if
+you need mutable state, intermediate variables, or multi-step logic, use a
+loop. No nesting beyond one level. Loops are also easier to debug since you
+can drop a `print` in the body.
 
 ## Pydantic
 
@@ -265,13 +287,6 @@ trusted input, access `.raw_function`.
 When dicts have an assumed key structure — literal keys used consistently,
 multiple functions passing the same shape — replace them with a model or
 `TypedDict`.
-
-## Decorators
-
-Always use `@functools.wraps(f)` on the inner wrapper. It preserves
-`__name__`, `__doc__`, `__annotations__`, `__type_params__`, and sets
-`__wrapped__`. Type decorators with `ParamSpec` so the signature is preserved
-for type checkers too, not just at runtime.
 
 ## Imports
 
@@ -321,13 +336,6 @@ something you couldn't easily figure out otherwise.
 Avoid `:=`. It hides assignments and widens lines. Assign on the line above.
 The only acceptable use is in a comprehension filter:
 `[y for x in items if (y := transform(x)) is not None]`.
-
-## Comprehensions
-
-Prefer comprehensions when short and clear. Don't force functional style — if
-you need mutable state, intermediate variables, or multi-step logic, use a
-loop. No nesting beyond one level. Loops are also easier to debug since you
-can drop a `print` in the body.
 
 ## Monkey-patching
 
