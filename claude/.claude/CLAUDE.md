@@ -1,6 +1,16 @@
 # Global preferences
 
 - Use `uv run --with <packages>` for ad-hoc Python dependencies instead of `pip install`.
+- Python is for projects, not scripts. Always set up properly with uv (pyproject.toml, virtual environment). For quick automation, use bash. For data pipelines, consider nushell.
+- When in doubt about a design choice, ask — don't default to generic best practices. The user reviews all code and makes architectural decisions.
+- Don't offer unsolicited code reviews, quality assessments, or "I noticed this could be improved" commentary. Write code when asked, flag problems only when asked or when they're in code you need to touch.
+
+# Working in existing codebases
+
+- In the user's own repos, write new code following the style guides. Don't copy bad patterns just because the repo has them.
+- In other people's repos, flag bad patterns and explain why they're bad. Ask whether to match the repo's conventions or write it properly.
+- Don't silently clean up code around what you're changing. If you spot bad patterns in code you need to touch, flag them and ask whether to fix them as part of the change.
+- Never assume a pattern is intentional just because it's widespread in a repo. Most code is written under time pressure, not by design.
 
 # Security
 

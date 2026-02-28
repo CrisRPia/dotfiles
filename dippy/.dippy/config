@@ -1,0 +1,5 @@
+deny python "Use uv run python instead"
+deny python3 "Use uv run python instead"
+deny pip "Use uv instead of pip"
+deny pip3 "Use uv instead of pip"
+ask uv

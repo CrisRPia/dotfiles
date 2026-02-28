@@ -1,5 +1,18 @@
 {
   "model": "opus",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "dippy"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -10,5 +23,6 @@
     "code-simplifier@claude-plugins-official": true,
     "basedpyright-lsp@claude-lsp-servers": true,
     "document-skills@anthropic-agent-skills": true
-  }
+  },
+  "effortLevel": "medium"
 }

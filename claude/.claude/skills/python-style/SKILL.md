@@ -13,10 +13,9 @@ much meaning as possible so the code documents itself.
 ## Type safety
 
 Annotate everything: function signatures, class attributes, variables where the
-type isn't obvious. The user runs basedpyright — in their own repos, fix every
-diagnostic. In other people's repos, write typesafe code in the parts you touch
-but don't rewrite the world. Keep changes scoped to what you have a reason to
-change.
+type isn't obvious. The user runs basedpyright — fix every diagnostic. For
+scoping behavior in other people's repos, defer to the "Working in existing
+codebases" section in CLAUDE.md.
 
 Annotate class attributes in the class body, not just in `__init__`. If you see
 redundant in-function annotations compensating for a loose return type upstream,
