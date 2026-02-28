@@ -1,0 +1,58 @@
+[> Player > ingredient_4 | milk ] -> [> Player > ingredient_4 | milk_5 ]
+[> Player > ingredient_3 | milk ] -> [> Player > ingredient_3 | milk_4 ]
+[> Player > ingredient_2 | milk ] -> [> Player > ingredient_2 | milk_3 ]
+[> Player > ingredient_1 | milk ] -> [> Player > ingredient_1 | milk_2 ]
+[> Player | milk ] -> [> Player | milk_1 ]
+
+
+##############
+#p...........#
+###..........#
+#............#
+#............#
+#....cr......#
+#......bel...#
+#............#
+#..........1.#
+#............#
+##############
+
+[> Player ingredient_4 | coffee ] -> [> Player ingredient_4 | coffee_5 ]
+[> Player ingredient_3 | coffee ] -> [> Player ingredient_3 | coffee_4 ]
+[> Player ingredient_2 | coffee ] -> [> Player ingredient_2 | coffee_3 ]
+[> Player ingredient_1 | coffee ] -> [> Player ingredient_1 | coffee_2 ]
+[> Player | coffee ] -> [> Player | coffee_1 ]
+
+[> Player ingredient_4 | redbull ] -> [> Player ingredient_4 | redbull_5 ]
+[> Player ingredient_3 | redbull ] -> [> Player ingredient_3 | redbull_4 ]
+[> Player ingredient_2 | redbull ] -> [> Player ingredient_2 | redbull_3 ]
+[> Player ingredient_1 | redbull ] -> [> Player ingredient_1 | redbull_2 ]
+[> Player | redbull ] -> [> Player | redbull_1 ]
+
+[> Player ingredient_4 | banana ] -> [> Player ingredient_4 | banana_5 ]
+[> Player ingredient_3 | banana ] -> [> Player ingredient_3 | banana_4 ]
+[> Player ingredient_2 | banana ] -> [> Player ingredient_2 | banana_3 ]
+[> Player ingredient_1 | banana ] -> [> Player ingredient_1 | banana_2 ]
+[> Player | banana ] -> [> Player | banana_1 ]
+
+[> Player ingredient_4 | sweetener ] -> [> Player ingredient_4 | sweetener_5 ]
+[> Player ingredient_3 | sweetener ] -> [> Player ingredient_3 | sweetener_4 ]
+[> Player ingredient_2 | sweetener ] -> [> Player ingredient_2 | sweetener_3 ]
+[> Player ingredient_1 | sweetener ] -> [> Player ingredient_1 | sweetener_2 ]
+[> Player | sweetener ] -> [> Player | sweetener_1 ]
+
+[> Player ingredient_4 | milk ] -> [> Player ingredient_4 | milk_5 ]
+[> Player ingredient_3 | milk ] -> [> Player ingredient_3 | milk_4 ]
+[> Player ingredient_2 | milk ] -> [> Player ingredient_2 | milk_3 ]
+[> Player ingredient_1 | milk ] -> [> Player ingredient_1 | milk_2 ]
+[> Player | milk ] -> [> Player | milk_1 ]
+
+########
+#cr.bel#
+#......#
+#cr.bel#
+#..p...#
+#cr.bel#
+#....###
+#...123#
+########
