@@ -1,0 +1,19 @@
+{
+    "values": {
+        "Editor / colorcolumn / 100": true,
+        "Editor / colorcolumn / 80": true,
+        "Editor / cursorline": false,
+        "Editor / spell": false,
+        "Editor / whitespace chars": true,
+        "Editor / word wrap": false,
+        "LSP / inlay hints": false,
+        "LSP / virtual lines": "line",
+        "LSP / virtual text": true,
+        "LSP / virtual text / error": true,
+        "LSP / virtual text / hint": false,
+        "LSP / virtual text / info": false,
+        "LSP / virtual text / warn": true,
+        "Status Column / absolute line numbers": false,
+        "Status Column / folds": false
+    }
+}

@@ -95,9 +95,9 @@ map("n", "<leader>n", ":cnext<CR>")
 map("n", "<leader>N", ":cprev<CR>")
 
 -- for puzzlescript
-map("n", "<leader>pzr", function() reset_ts("puzzlescript") end)
+map("n", "<leader>pzr", function() ResetTs("puzzlescript") end)
 
-function reset_ts(name)
+function ResetTs(name)
     local out = vim.system({ "tree-sitter", "generate"}):wait()
     print(out.stdout .. out.stderr .. out.code .. out.signal)
     print(require("nvim-treesitter.install").update(name)())

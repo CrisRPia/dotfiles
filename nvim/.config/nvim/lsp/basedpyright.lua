@@ -1,12 +1,15 @@
+---@type vim.lsp.Config
 return {
-    analysis = {
-        diagnosticMode = "openFilesOnly",
-        autoSearchPaths = true,
-        inlayHints = {
-            callArgumentNames = true,
-            genericTypes = true
-        },
-        typeCheckingMode = "recommended",
-        autoFormatStrings = true,
+    settings = {
+        analysis = {
+            diagnosticMode = "workspace",
+            autoSearchPaths = true,
+            inlayHints = {
+                callArgumentNames = true,
+                genericTypes = true
+            },
+            typeCheckingMode = "recommended",
+            autoFormatStrings = true,
+        }
     }
 }

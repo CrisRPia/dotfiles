@@ -8,7 +8,9 @@ snacks.setup({
     explorer = { enabled = true },
     quickfile = { enabled = true },
     scroll = { enabled = false, animate = { duration = {total = 200}  } },
-    statuscolumn = { enabled = true },
+    statuscolumn = {
+        enabled = false,
+    },
     words = { enabled = true },
 })
 

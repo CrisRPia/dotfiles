@@ -18,6 +18,8 @@ local severity = vim.diagnostic.severity
 ---@type virtual_line_enum
 local show_virtual_lines = "no"
 
+local vt_severity = { error = true, warn = false, hint = false, info = false }
+
 ---@type vim.diagnostic.Opts
 local diagnostic_config = {
     virtual_lines = function ()
@@ -40,7 +42,10 @@ local diagnostic_config = {
         source = true,
     },
     virtual_text = {
-        severity = { "ERROR" },
+        format = function(diag)
+            local sev = vim.diagnostic.severity[diag.severity]:lower()
+            return vt_severity[sev] and diag.message or nil
+        end,
     },
     signs = {
         linehl = {
@@ -69,18 +74,65 @@ end
 
 reset_diagnostics()
 
-vim.keymap.set("n", "<leader>vl", function()
-    ---@type virtual_line_enum[]
-    local order = {"no", "line", "all"}
 
-    for index, value in ipairs(order) do
-        if show_virtual_lines == value then
-            local next_index = (index % #order) + 1
-            show_virtual_lines = order[next_index]
-            break
-        end
-    end
-
-    reset_diagnostics()
-    print("Set virtual lines to " .. show_virtual_lines)
-end)
+require("cristian.configuration_handler").append({
+    {
+        name = "LSP",
+        type = "Namespace",
+        children = {
+            {
+                name = "inlay hints",
+                type = "Toggle",
+                get = function() return vim.lsp.inlay_hint.is_enabled({}) end,
+                set = function(v) vim.lsp.inlay_hint.enable(v) end,
+            },
+            {
+                name = "virtual lines",
+                type = "Enum",
+                values = { "no", "line", "all" },
+                get = function() return show_virtual_lines end,
+                set = function(v)
+                    show_virtual_lines = v --[[@as virtual_line_enum]]
+                    reset_diagnostics()
+                end,
+            },
+            {
+                name = "virtual text",
+                type = "Namespace",
+                get = function()
+                    for _, v in pairs(vt_severity) do
+                        if v then return true end
+                    end
+                    return false
+                end,
+                set = function(_) end,
+                children = {
+                    {
+                        name = "error",
+                        type = "Toggle",
+                        get = function() return vt_severity.error end,
+                        set = function(v) vt_severity.error = v; reset_diagnostics() end,
+                    },
+                    {
+                        name = "warn",
+                        type = "Toggle",
+                        get = function() return vt_severity.warn end,
+                        set = function(v) vt_severity.warn = v; reset_diagnostics() end,
+                    },
+                    {
+                        name = "hint",
+                        type = "Toggle",
+                        get = function() return vt_severity.hint end,
+                        set = function(v) vt_severity.hint = v; reset_diagnostics() end,
+                    },
+                    {
+                        name = "info",
+                        type = "Toggle",
+                        get = function() return vt_severity.info end,
+                        set = function(v) vt_severity.info = v; reset_diagnostics() end,
+                    },
+                },
+            },
+        },
+    },
+})

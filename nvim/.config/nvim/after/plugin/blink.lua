@@ -128,7 +128,7 @@ blink.setup({
                 columns = {
                     { "item_idx" },
                     { "kind_icon" },
-                    { "label", "label_description", gap = 1 },
+                    { "label",    "label_description", gap = 1 },
                 },
                 components = {
                     item_idx = {
@@ -150,7 +150,9 @@ blink.setup({
         },
     },
     fuzzy = {
-        use_frecency = true,
+        frecency = {
+            enabled = true,
+        },
         implementation = "rust",
 
         prebuilt_binaries = {
