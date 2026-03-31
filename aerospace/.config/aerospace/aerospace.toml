@@ -1,8 +1,8 @@
 on-focus-changed = [
-  'exec-and-forget printf "refresh" > tmp/barik.fifo',
+  'exec-and-forget printf "refresh" > $TMPDIR/barik.fifo',
 ]
 exec-on-workspace-change = [
-  '/bin/zsh -c "printf refresh > tmp/barik.fifo',
+  '/bin/zsh -c "printf refresh > $TMPDIR/barik.fifo',
 ]
 start-at-login = true
 enable-normalization-flatten-containers = true
@@ -29,7 +29,7 @@ on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
 automatically-unhide-macos-hidden-apps = false
 
 [exec.env-vars]
-REFRESH_WIDGET = '/bin/zsh -c "printf refresh > tmp/barik.fifo"'
+REFRESH_WIDGET = '/bin/zsh -c "printf refresh > $TMPDIR/barik.fifo"'
 
 [[on-window-detected]]
 if.app-name-regex-substring = "Zen"
@@ -52,10 +52,10 @@ preset = "qwerty"
 [gaps]
 inner.horizontal = 5
 inner.vertical = 5
-outer.left = 5
-outer.bottom = 5
+outer.left = 0
+outer.bottom = 0
 outer.top = 40
-outer.right = 5
+outer.right = 0
 
 [mode.main.binding]
 # All possible keys:
@@ -96,19 +96,19 @@ cmd-l = "focus right --boundaries-action wrap-around-the-workspace"
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-shift-h = [
   "move left",
-  'exec-and-forget /bin/zsh -c "printf refresh > tmp/barik.fifo"'
+  'exec-and-forget /bin/zsh -c "printf refresh > $TMPDIR/barik.fifo"'
 ]
 cmd-shift-j = [
   "move down",
-  'exec-and-forget /bin/zsh -c "printf refresh > tmp/barik.fifo"'
+  'exec-and-forget /bin/zsh -c "printf refresh > $TMPDIR/barik.fifo"'
 ]
 cmd-shift-k = [
   "move up",
-  'exec-and-forget /bin/zsh -c "printf refresh > tmp/barik.fifo"'
+  'exec-and-forget /bin/zsh -c "printf refresh > $TMPDIR/barik.fifo"'
 ]
 cmd-shift-l = [
   "move right",
-  'exec-and-forget /bin/zsh -c "printf refresh > tmp/barik.fifo"'
+  'exec-and-forget /bin/zsh -c "printf refresh > $TMPDIR/barik.fifo"'
 ]
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-1 = "workspace 01"

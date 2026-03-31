@@ -1,5 +1,11 @@
 {
-  "model": "opus",
+  "permissions": {
+    "deny": [
+      "Edit:.venv/**",
+      "Write:.venv/**"
+    ]
+  },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -19,10 +25,21 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "basedpyright-lsp@claude-lsp-servers": true,
-    "document-skills@anthropic-agent-skills": true
-  },
-  "effortLevel": "medium"
+    "document-skills@anthropic-agent-skills": true,
+    "rust-analyzer-lsp@claude-lsp-servers": true,
+    "json-lsp@claude-lsp-servers": true,
+    "typescript-lsp@claude-lsp-servers": true,
+    "css-lsp@claude-lsp-servers": true,
+    "tombi-lsp@claude-lsp-servers": true,
+    "yaml-lsp@claude-lsp-servers": true,
+    "xml-lsp@claude-lsp-servers": true,
+    "bash-lsp@claude-lsp-servers": true,
+    "html-lsp@claude-lsp-servers": true,
+    "docker-lsp@claude-lsp-servers": true,
+    "lua-lsp@claude-lsp-servers": true,
+    "jinja-lsp@claude-lsp-servers": true,
+    "commit-commands@claude-plugins-official": true
+  }
 }

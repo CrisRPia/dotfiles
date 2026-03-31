@@ -222,3 +222,18 @@ export PATH="/Users/cristianrodriguez/Library/Python/3.14/bin:$PATH"
 
 # Vibe coding
 export ENABLE_LSP_TOOL=1
+export EDITOR="nvim"
+
+# Expose lsps for claude code to use.
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
+
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE=~/.zsh_history
+
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
